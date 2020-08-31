@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=l, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./5.css">
+    <script src="./jquery-3.5.1.min.js"></script>
+    <!-- 引入图标 -->
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2025643_tudew437ki.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" class="txtb" placeholder="Add a task">
+        <!-- 待执行区 -->
+        <div class="notcomp">
+            <h3>Not completed</h3>
+
+        
+        </div>
+        <!-- 执行完区域 -->
+        <div class="comp">
+            <h3>completed</h3>
+           
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".txtb").on("keyup",function(e){
+            if(e.keyCode == 13 && $(".txtb").val() != "")
+            {
+                var task = $("<div class ='task'></div>").text($(".txtb").val());
+                var check = $("<i class = 'iconfont icon-weibiaoti14'></i>").click(function(){
+                    var p =$(this).parent();
+                    p.fadeOut(function(){
+                        $(".comp").append(p)
+                        p.fadeIn();
+                    });
+                    $(this).remove();
+                });
+                var del = $("<i class='iconfont icon-cangpeitubiao_shanchu'></i>").click(function(){
+                    var p = $(this).parent();
+                    p.fadeOut(function(){
+                        p.remove();
+                    });
+                });
+    
+                task.append(del,check);
+                $(".notcomp").append(task);
+    
+                $(".txtb").val("");
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
